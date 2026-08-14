@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ranco Live - Suppression des données utilisateur</title>
+  <meta name="description" content="Formulaire officiel de demande de suppression des données et de fermeture de compte Ranco Live.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #F97316;
+      --primary-hover: #EA580C;
+      --primary-light: rgba(249, 115, 22, 0.1);
+      --bg: #0F172A;
+      --card-bg: #1E293B;
+      --card-border: #334155;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --danger: #EF4444;
+      --danger-light: rgba(239, 68, 68, 0.15);
+      --success: #10B981;
+      --success-light: rgba(16, 185, 129, 0.15);
+      --radius: 16px;
+      --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(249, 115, 22, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(239, 68, 68, 0.05) 0%, transparent 40%);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .header {
+      padding: 32px 32px 24px 32px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary-light);
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .brand-icon {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .header p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .content {
+      padding: 32px;
+    }
+
+    .info-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--card-border);
+      border-left: 4px solid var(--primary);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .info-box ul {
+      margin-top: 8px;
+      padding-left: 18px;
+    }
+
+    .info-box li {
+      margin-bottom: 4px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    .phone-input-wrapper {
+      display: flex;
+      gap: 10px;
+    }
+
+    select, input[type="tel"], input[type="text"] {
+      width: 100%;
+      background: #0F172A;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      color: var(--text-main);
+      font-size: 15px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    select {
+      width: 130px;
+      cursor: pointer;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-light);
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 28px;
+      cursor: pointer;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .checkbox-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary) 0%, #F97316 100%);
+      color: #FFFFFF;
+      border: none;
+      padding: 16px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25);
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary-hover) 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(249, 115, 22, 0.35);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .spinner {
+      display: none;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #FFFFFF;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Success State */
+    .success-container {
+      display: none;
+      text-align: center;
+      padding: 10px 0;
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    .success-icon-wrap {
+      width: 64px;
+      height: 64px;
+      background: var(--success-light);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px auto;
+    }
+
+    .success-icon-wrap svg {
+      width: 32px;
+      height: 32px;
+      stroke: var(--success);
+    }
+
+    .success-container h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    .success-container p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .ticket-box {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px dashed var(--card-border);
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 24px;
+    }
+
+    .ticket-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .ticket-number {
+      font-family: monospace;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 4px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        border-radius: 12px;
+      }
+      .header, .content {
+        padding: 24px 20px;
+      }
+      .phone-input-wrapper {
+        flex-direction: column;
+      }
+      select {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <div class="brand-badge">
+        <svg class="brand-icon" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        Ranco Live
+      </div>
+      <h1>Suppression de compte & données</h1>
+      <p>Formulaire officiel de demande de suppression des données personnelles pour l'application Ranco Live.</p>
+    </div>
+
+    <div class="content">
+      <!-- Form Container -->
+      <div id="formContainer">
+        <div class="info-box">
+          <strong>Information importante :</strong>
+          <p>Conformément aux directives de confidentialité (Google Play / App Store) :</p>
+          <ul>
+            <li>Toutes vos informations personnelles (profil, achats, lives, historique) seront définitivement supprimées.</li>
+            <li>Le traitement de votre demande est effectif sous 24h à 48h ouvrées.</li>
+          </ul>
+        </div>
+
+        <form id="deletionForm">
+          <div class="form-group">
+            <label for="phoneNumber">Numéro de téléphone lié au compte</label>
+            <div class="phone-input-wrapper">
+              <select id="countryCode" aria-label="Indicatif du pays">
+                <option value="+225">CI (+225)</option>
+                <option value="+33">FR (+33)</option>
+                <option value="+221">SN (+221)</option>
+                <option value="+226">BF (+226)</option>
+                <option value="+223">ML (+223)</option>
+                <option value="+228">TG (+228)</option>
+                <option value="+229">BJ (+229)</option>
+                <option value="+1">US (+1)</option>
+                <option value="other">Autre</option>
+              </select>
+              <input 
+                type="tel" 
+                id="phoneNumber" 
+                placeholder="Ex: 0701020304" 
+                required
+                autocomplete="tel"
+              />
+            </div>
+          </div>
+
+          <label class="checkbox-group">
+            <input type="checkbox" id="confirmCheckbox" required />
+            <span class="checkbox-label">
+              Je confirme vouloir supprimer définitivement mon compte Ranco Live et toutes les données associées à ce numéro de téléphone.
+            </span>
+          </label>
+
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span class="spinner" id="btnSpinner"></span>
+            <span id="btnText">Confirmer la demande de suppression</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Success Container -->
+      <div class="success-container" id="successContainer">
+        <div class="success-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h2>Demande prise en compte !</h2>
+        <p>Votre demande de suppression de données pour le numéro <strong id="submittedPhone" style="color:var(--text-main);"></strong> a bien été enregistrée.</p>
+
+        <div class="ticket-box">
+          <div class="ticket-label">Numéro de référence de la demande</div>
+          <div class="ticket-number" id="referenceCode">REF-000000</div>
+        </div>
+
+        <p style="font-size: 13px;">
+          Un administrateur procèdera à la suppression complète des données sous 24 à 48 heures.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>© <span id="year"></span> Ranco Live. Tous droits réservés.</p>
+    <p style="margin-top: 6px;">
+      Besoin d'aide ? Contactez notre support : 
+      <a href="mailto:support@rancolive.com">support@rancolive.com</a>
+    </p>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const form = document.getElementById('deletionForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnSpinner = document.getElementById('btnSpinner');
+    const btnText = document.getElementById('btnText');
+    const formContainer = document.getElementById('formContainer');
+    const successContainer = document.getElementById('successContainer');
+    const submittedPhone = document.getElementById('submittedPhone');
+    const referenceCode = document.getElementById('referenceCode');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const countryCode = document.getElementById('countryCode').value;
+      const rawPhone = document.getElementById('phoneNumber').value.trim();
+
+      if (!rawPhone) return;
+
+      const fullPhoneNumber = countryCode !== 'other' ? `${countryCode} ${rawPhone}` : rawPhone;
+
+      // Desactiver bouton et afficher chargement
+      submitBtn.disabled = true;
+      btnSpinner.style.display = 'inline-block';
+      btnText.textContent = 'Traitement en cours...';
+
+      // Generation d'une reference unique
+      const randomRef = 'REF-' + Math.floor(100000 + Math.random() * 900000);
+
+      // Preparation des donnees de la demande (peut etre envoye vers un backend API ou Firestore)
+      const payload = {
+        phoneNumber: fullPhoneNumber,
+        requestedAt: new Date().toISOString(),
+        referenceCode: randomRef
+      };
+
+      console.log("Demande de suppression enregistrée :", payload);
+
+      // Simulation d'une requete reseau fluide
+      setTimeout(() => {
+        submittedPhone.textContent = fullPhoneNumber;
+        referenceCode.textContent = randomRef;
+
+        formContainer.style.display = 'none';
+        successContainer.style.display = 'block';
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
